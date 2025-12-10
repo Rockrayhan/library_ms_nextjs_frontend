@@ -4,6 +4,7 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import Topbar from "@/components/dashboard/Topbar";
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "@/lib/auth";
+import SkeletonLoader from "@/components/shared/SkeletonLoader";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<any>(null);
@@ -16,10 +17,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     });
   }, []);
 
-  if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  if (loading)
+    return (
+      <SkeletonLoader/>
+    );
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-gray-950 text-gray-200">
       <Sidebar user={user} />
       <div className="flex-1 flex flex-col">
         <Topbar user={user} />
