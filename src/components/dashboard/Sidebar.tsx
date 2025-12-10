@@ -12,15 +12,15 @@ export default function Sidebar({ user }: { user: any }) {
         {user.role === "admin" && (
           <>
             <SidebarLink href="/dashboard/admin">Dashboard Home</SidebarLink>
-            <SidebarLink href="/dashboard/admin/users">Users</SidebarLink>
-            <SidebarLink href="/dashboard/admin/subscriptions">
+            <SidebarLink href="/dashboard/admin/manage-books">Manage All Books</SidebarLink>
+            <SidebarLink href="/dashboard/admin/all-users">All Users</SidebarLink>
+            <SidebarLink href="/dashboard/admin/manage-subscription">
               Subscriptions
             </SidebarLink>
-            <SidebarLink href="/dashboard/admin/books">Books</SidebarLink>
-            <SidebarLink href="/dashboard/admin/manage-borrow">Manage-borrow</SidebarLink>
+            <SidebarLink href="/dashboard/admin/manage-borrow">Manage-Return</SidebarLink>
 
             <SidebarLink href="/"><span className="flex gap-1.5"> 
-              <HomeIcon /> Go to Home</span>
+              <HomeIcon /> Go to Home Page</span>
               </SidebarLink>
 
           </>

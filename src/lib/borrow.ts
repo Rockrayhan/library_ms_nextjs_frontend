@@ -34,26 +34,18 @@ export async function borrowBook(data: {
 
 
 export async function getAllBorrows() {
-  try {
-    const res = await axios.get("/borrow");
-    return res.data.data;
-  } catch (error: any) {
-    toast.error("Failed to load borrow list");
-    throw error;
-  }
+  const res = await axios.get("/borrow");
+  return res.data.data;
 }
 
 
+export async function getAllUsers() {
+  const res = await axios.get("/user");
+  return res.data.data;
+}
 
 
-
-export async function returnBorrow(borrowId: string) {
-  try {
-    const res = await axios.patch(`/borrow/return/${borrowId}`);
-    toast.success("Book returned successfully!");
-    return res.data.data;
-  } catch (error: any) {
-    toast.error(error?.response?.data?.message || "Return failed");
-    throw error;
-  }
+export async function returnBorrow(id: string) {
+  const res = await axios.patch(`/borrow/return/${id}`);
+  return res.data.data;
 }
