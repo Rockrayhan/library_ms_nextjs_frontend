@@ -40,7 +40,9 @@ export default function Navbar() {
             // When logged in
             <>
               <Link href="/dashboard/user">My Dashboard</Link>
-
+              <small>
+                {user._id}
+              </small>
               <Button
                 variant="destructive"
                 onClick={async () => {
