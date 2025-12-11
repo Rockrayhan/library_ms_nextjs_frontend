@@ -9,13 +9,15 @@ export default function Navbar() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch user on mount
   useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_API_URL) return; 
+
     async function fetchUser() {
       const data = await getCurrentUser();
       setUser(data);
       setLoading(false);
     }
+
     fetchUser();
   }, []);
 

@@ -5,8 +5,8 @@ import { getAllBooks } from "@/lib/books";
 
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import BooksTable from "@/components/dashboard/BooksTable";
-import CreateBookModal from "@/components/dashboard/CreateBookModal";
+import BooksTable from "@/components/dashboard/books/BooksTable";
+import CreateBookModal from "@/components/dashboard/books/CreateBookModal";
 
 
 export default function ManageBooksPage() {

@@ -19,7 +19,7 @@ export default async function HomePage() {
         <h2 className="text-2xl font-semibold mb-4">Latest Books</h2>
 
        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-               {books.slice(0, 6).map((book: any) => (
+               {books?.slice(0, 6).map((book: any) => (
                  <BookCard key={book._id} book={book} />
                ))}
              </div>
@@ -30,7 +30,7 @@ export default async function HomePage() {
         <h2 className="text-2xl font-semibold mb-4">Subscription Plans</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {subscriptions.map((sub: any) => (
+          {subscriptions?.map((sub: any) => (
             <div
               key={sub._id}
               className="border border-gray-700 bg-gray-800 p-6 rounded-lg"

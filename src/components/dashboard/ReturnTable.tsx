@@ -14,11 +14,11 @@ export default function ReturnTable({ borrows }: any) {
   const [filter, setFilter] = useState("all");
 
   const handleReturn = async (id: string) => {
-    if (!confirm("Are you sure you want to return this book?")) return;
+    if (!confirm("Are you sure user returned this book?")) return;
 
     try {
       await returnBorrow(id);
-      toast.success("Book returned successfully!");
+      toast.success("Book Marked as Retuned confirm successfully!");
 
       setItems((prev: any) =>
         prev.map((b: any) =>
@@ -26,7 +26,7 @@ export default function ReturnTable({ borrows }: any) {
         )
       );
     } catch {
-      toast.error("Failed to return book");
+      toast.error("Failed to Mark return book");
     }
   };
 
@@ -102,7 +102,7 @@ export default function ReturnTable({ borrows }: any) {
               <TableCell>
                 {!b.returned ? (
                   <Button size="sm" onClick={() => handleReturn(b._id)}>
-                    Return
+                    Mark as Returned
                   </Button>
                 ) : (
                   <Button size="sm" disabled variant="outline">
