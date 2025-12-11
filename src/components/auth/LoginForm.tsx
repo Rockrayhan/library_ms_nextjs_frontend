@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import axios from "@/lib/axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -58,6 +59,10 @@ export default function LoginForm() {
         <Button className="w-full" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </Button>
+
+        <div className="underline py-2 text-center">
+          <Link href="/register"> New user ? Please Register </Link>
+        </div>
       </div>
     </form>
   );
