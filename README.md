@@ -2,7 +2,7 @@
 
 A simple frontend for a library management system — built with **Next js**, **TypeScript**, and **ShandCN**.
 
-### Live link: 
+### Live link: https://lms-nextjs-frontend.vercel.app/
 
 #### 🛠️ Technologies used: Next js, TypeScript , ShadCN.
 
