@@ -7,7 +7,7 @@ const LatestBooksSection = async () => {
     return (
             
       <div className="py-16">
-        <h2 className="text-3xl font-semibold mb-4">Latest Books</h2>
+        <h2 className="text-3xl font-semibold mb-6 text-center">Our Latest Books</h2>
 
        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                {books?.slice(0, 6).map((book: any) => (

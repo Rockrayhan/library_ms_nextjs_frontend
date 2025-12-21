@@ -25,10 +25,10 @@ const FaqSection = () => {
 
   return (
     <div className="py-16">
-      <h1 className="text-3xl font-semibold pt-16 pb-6">
+      <h2 className="text-3xl font-semibold mb-6 text-center">
       
         Frequently Asked Questions
-      </h1>
+      </h2>
 
       <div className="space-y-2">
         {faqs.map((item, idx) => (

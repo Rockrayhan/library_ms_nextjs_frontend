@@ -6,8 +6,8 @@ const SubscriptionsSection = async () => {
   const subscriptions = await fetchSubscriptions();
 
   return (
-    <div className="py-16">
-      <h2 className="text-3xl font-semibold mb-8 text-center">
+    <div className="py-16" id="subscribtion-section">
+      <h2 className="text-3xl font-semibold mb-6 text-center">
         Subscription Plans
       </h2>
 

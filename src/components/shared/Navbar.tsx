@@ -10,7 +10,7 @@ export default function Navbar() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!process.env.NEXT_PUBLIC_API_URL) return; 
+    if (!process.env.NEXT_PUBLIC_API_URL) return;
 
     async function fetchUser() {
       const data = await getCurrentUser();
@@ -22,45 +22,65 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="w-full border-b">
-      <div className="container mx-auto flex justify-between items-center py-4">
-        <Link href="/" className="text-xl font-bold">
+    <nav className="w-full border-b sticky top-0 z-10 bg-[rgba(26,25,25,0.86)] backdrop-blur-sm shadow-sm">
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-4 md:px-8">
+
+        <Link
+          href="/"
+          className="text-xl font-bold cursor-pointer hover:opacity-80"
+        >
           Easy-Library
         </Link>
 
-        <div className="flex gap-6 items-center">
-          {/* Common Links */}
-          <Link href="/books">Books</Link>
-          <Link href="/subscription">Subscription</Link>
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
 
-          {/* Authentication area */}
+          <Link
+            href="/books"
+            className="cursor-pointer hover:opacity-80"
+          >
+            Books
+          </Link>
+
+          <Link
+            href="/subscription"
+            className="cursor-pointer hover:opacity-80"
+          >
+            Subscription
+          </Link>
+
           {loading ? (
             <span className="text-sm opacity-50">Loading...</span>
           ) : user ? (
-            // When logged in
             <>
-              <Link href="/dashboard/user">My Dashboard</Link>
-              <small>
-                {user._id}
+              <Link
+                href="/dashboard/user"
+                className="cursor-pointer hover:opacity-80"
+              >
+                My Dashboard
+              </Link>
+
+              <small className="cursor-pointer hover:opacity-80">
+                {user.name}
               </small>
+
               <Button
                 variant="destructive"
                 onClick={async () => {
                   await logoutUser();
-                  setUser(null); // instantly update navbar
+                  setUser(null);
                 }}
+                className="cursor-pointer"
               >
                 Logout
               </Button>
             </>
           ) : (
-            // When not logged in
-            <Button asChild>
+            <Button asChild className="cursor-pointer hover:opacity-80">
               <Link href="/login">Login</Link>
             </Button>
           )}
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

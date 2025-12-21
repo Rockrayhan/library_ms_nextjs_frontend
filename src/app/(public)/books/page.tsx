@@ -7,7 +7,7 @@ export default async function AllBooksPage() {
 
   return (
     <div className="max-w-5xl mx-auto py-10 space-y-6">
-      <h1 className="text-3xl font-semibold">All Books</h1>
+      <h1 className="text-4xl text-center font-semibold">All Books</h1>
 
       {/* Client Side Filter Section */}
       <BooksFilterSection books={books} />

@@ -6,29 +6,28 @@ import axios from "@/lib/axios";
 import { getCurrentUser } from "@/lib/auth";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
+import SkeletonLoader from "../shared/SkeletonLoader";
 
 export function SubscriptionCard({ plan }: any) {
   const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   // Fetch current user on mount
   useEffect(() => {
     async function loadUser() {
       const me = await getCurrentUser();
       setUser(me);
-      setLoading(false);
+      // setLoading(false);
     }
     loadUser();
   }, []);
 
   // If still loading user data, show skeleton / placeholder
-  if (loading) {
-    return (
-      <Card className="rounded-2xl p-6">
-        <p>Loading...</p>
-      </Card>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <SkeletonLoader/>
+  //   );
+  // }
 
   // Check if the user is already subscribed to this plan
   const userSubscribed =
@@ -59,7 +58,7 @@ export function SubscriptionCard({ plan }: any) {
   }
 
   return (
-    <Card className="hover:shadow-xl transition rounded-2xl">
+    <Card className="rounded-2xl hover-effect">
       <CardHeader>
         <CardTitle className="text-xl capitalize">{plan.planName}</CardTitle>
       </CardHeader>

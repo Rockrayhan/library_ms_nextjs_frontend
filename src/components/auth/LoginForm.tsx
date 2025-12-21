@@ -51,7 +51,6 @@ export default function LoginForm() {
 
       toast.success("Login successful");
       router.push("/dashboard/user");
-
     } catch (error: any) {
       toast.error(error?.response?.data?.message || "Login failed");
     } finally {
@@ -60,7 +59,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form 
+    <form
       onSubmit={handleLogin}
       className="w-full max-w-sm border rounded-lg p-6 shadow"
     >

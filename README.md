@@ -31,3 +31,5 @@ A simple frontend for a library management system — built with **Next js**, **
 - in root folder go to the terminal, hit - `npm i` then `npm run dev`
 - in `.env` file provide required credentials
 - access live site locally at `http://localhost:3000` in your browser.
+
+

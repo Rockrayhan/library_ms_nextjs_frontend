@@ -6,7 +6,9 @@ export default function Sidebar({ user }: { user: any }) {
 
   return (
     <div className="w-64 bg-gray-800 border-r border-gray-700 h-screen p-5">
-      <div className="font-bold text-xl mb-6 text-gray-100">Dashboard</div>
+      <div className="font-bold text-xl mb-6 text-gray-100">
+       {user.role === "admin" ?  <span> Admin Dashboard </span> : <span> User Dashboard </span>}
+        </div>
 
       <nav className="flex flex-col gap-2">
         {user.role === "admin" && (

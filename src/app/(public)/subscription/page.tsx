@@ -7,13 +7,13 @@ import { SubscriptionCard } from "@/components/subscriptions/SubscriptionCard";
 
 export default function SubscriptionPage() {
   const [plans, setPlans] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getAllSubscriptions()
       .then(setPlans)
       .catch(() => toast.error("Failed to load subscriptions"))
-      .finally(() => setLoading(false));
+      // .finally(() => setLoading(false));
   }, []);
 
   const handleSelectPlan = (plan: any) => {
@@ -24,7 +24,7 @@ export default function SubscriptionPage() {
     <div className="max-w-4xl mx-auto py-10 space-y-6">
       <h1 className="text-3xl font-semibold">Subscription Plans</h1>
 
-      {loading && <p>Loading...</p>}
+      {/* {loading && <p>Loading...</p>} */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {plans.map((plan: any) => (

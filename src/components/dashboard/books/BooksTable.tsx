@@ -48,8 +48,8 @@ export default function BooksTable({ books, refreshBooks }: any) {
               <TableHead>Title</TableHead>
               <TableHead>Author</TableHead>
               <TableHead>Genre</TableHead>
-              <TableHead>Available Copies</TableHead>
-              <TableHead>Total Stock</TableHead>
+              <TableHead>Currently Available Copies</TableHead>
+              <TableHead>Total Stocked</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>

@@ -8,7 +8,7 @@ export default function Topbar({ user }: any) {
 
   const handleLogout = async () => {
     await logoutUser();
-    router.push("/login");
+    router.push("/");
   };
 
   return (
@@ -22,7 +22,7 @@ export default function Topbar({ user }: any) {
           onClick={handleLogout}
           className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
         >
-          Logout
+         Dashboard Logout
         </button>
       )}
     </div>

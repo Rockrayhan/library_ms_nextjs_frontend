@@ -5,14 +5,16 @@ import SubscriptionsSection from "@/components/home/SubscriptionsSection";
 
 export default async function HomePage() {
   return (
-    <div className="py-10 text-gray-200">
-      <Banner/>
+    <div className="pb-10 text-gray-200">
+      <Banner />
 
-      <LatestBooksSection />
+      <div className="container">
+        <LatestBooksSection />
 
-      <SubscriptionsSection />
+        <SubscriptionsSection />
 
-      <FaqSection />
+        <FaqSection />
+      </div>
     </div>
   );
 }

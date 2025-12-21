@@ -120,12 +120,23 @@
   }
 }
 
+/* ============== custom css ============= */
+
+body,
+html {
+  scroll-behavior: smooth;
+}
+
 .center {
   @apply flex justify-center items-center;
 }
 
 .container {
   @apply mx-auto max-w-screen-xl;
+}
+
+.hover-effect {
+  @apply transition-all duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-600/60;
 }
 
 button {

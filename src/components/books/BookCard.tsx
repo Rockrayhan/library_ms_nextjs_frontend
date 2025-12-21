@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export function BookCard({ book }: any) {
   return (
-    <Card className="hover:shadow-xl transition rounded-2xl">
+    <Card className="rounded-2xl hover-effect">
       <CardHeader className="flex flex-col items-center gap-2">
         <div className="w-full h-48 relative rounded-lg overflow-hidden">
           <Image
