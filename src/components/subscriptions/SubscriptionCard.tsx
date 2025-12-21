@@ -58,7 +58,7 @@ export function SubscriptionCard({ plan }: any) {
   }
 
   return (
-    <Card className="rounded-2xl hover-effect">
+    <Card className="rounded-2xl hover-effect md:w-2/6 w-full">
       <CardHeader>
         <CardTitle className="text-xl capitalize">{plan.planName}</CardTitle>
       </CardHeader>

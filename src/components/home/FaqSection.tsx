@@ -24,8 +24,8 @@ const FaqSection = () => {
   ];
 
   return (
-    <div className="py-16">
-      <h2 className="text-3xl font-semibold mb-6 text-center">
+    <div className="p-24 container">
+      <h2 className="text-3xl font-semibold mb-12 text-center">
       
         Frequently Asked Questions
       </h2>
