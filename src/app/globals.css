@@ -144,3 +144,8 @@ html {
 button {
   cursor: pointer;
 }
+
+.sidebar-nav a {
+  background-color: rgba(74, 69, 69, 0.801);
+}
+

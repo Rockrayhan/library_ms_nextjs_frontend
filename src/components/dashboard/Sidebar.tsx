@@ -10,7 +10,7 @@ export default function Sidebar({ user }: { user: any }) {
        {user.role === "admin" ?  <span> Admin Dashboard </span> : <span> User Dashboard </span>}
         </div>
 
-      <nav className="flex flex-col gap-2">
+      <nav className="flex flex-col gap-2 sidebar-nav">
         {user.role === "admin" && (
           <>
             <SidebarLink href="/dashboard/admin">Dashboard Home</SidebarLink>
@@ -21,9 +21,11 @@ export default function Sidebar({ user }: { user: any }) {
             </SidebarLink>
             <SidebarLink href="/dashboard/admin/manage-borrow">Manage-Return</SidebarLink>
 
-            <SidebarLink href="/"><span className="flex gap-1.5"> 
-              <HomeIcon /> Go to Home Page</span>
-              </SidebarLink>
+
+            <SidebarLink href="/dashboard/admin/manage-review">Manage-Review</SidebarLink>
+            <SidebarLink href="/dashboard/admin/manage-coupon">Manage-Coupon</SidebarLink>
+
+
 
           </>
         )}
@@ -42,9 +44,6 @@ export default function Sidebar({ user }: { user: any }) {
               Borrowed Books History 
             </SidebarLink>
 
-            <SidebarLink href="/"><span className="flex gap-1.5"> 
-              <HomeIcon /> Go to Home</span>
-              </SidebarLink>
           </>
         )}
       </nav>

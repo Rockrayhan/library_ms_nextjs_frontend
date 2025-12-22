@@ -2,6 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { logoutUser } from "@/lib/auth";
+import Link from "next/link";
+import { HomeIcon } from "lucide-react";
+import { Button } from "../ui/button";
 
 export default function Topbar({ user }: any) {
   const router = useRouter();
@@ -17,14 +20,25 @@ export default function Topbar({ user }: any) {
         Welcome, <span className="font-semibold">{user?.name || "Guest"}</span>
       </div>
 
-      {user && (
-        <button
-          onClick={handleLogout}
-          className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
-        >
-         Dashboard Logout
-        </button>
-      )}
+      <div className="center gap-2.5">
+        <Link href="/">
+       
+          <Button>
+      
+            <HomeIcon /> Go to Home
+          </Button>
+        </Link>
+
+        {user && (
+          <Button
+            onClick={handleLogout}
+            variant="destructive"
+            className=" hover:bg-red-700 transition"
+          >
+            Dashboard Logout
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
+import ReviewForm from "@/components/books/ReviewForm";
+import ReviewSection from "@/components/books/ReviewSection";
 
 export async function fetchBookById(id: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${id}`, {
@@ -25,10 +27,25 @@ export async function fetchSuggestedBooks(genre: string, currentId: string) {
     .slice(0, 4);
 }
 
-export default async function BookDetailsPage({ params }: any) {
+export async function fetchBookReviews(id: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/${id}`, {
+    cache: "no-store",
+  });
+
+  const json = await res.json();
+  return json.data;
+}
+
+export default async function BookDetailsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
 
   const book = await fetchBookById(id);
+  const reviews = await fetchBookReviews(id);
+  const suggested = await fetchSuggestedBooks(book.genre, book._id);
 
   if (!book) {
     return (
@@ -38,13 +55,11 @@ export default async function BookDetailsPage({ params }: any) {
     );
   }
 
-  const suggested = await fetchSuggestedBooks(book.genre, book._id);
-
   return (
-    <div className="container mx-auto py-16">
+    <div className="container mx-auto py-16 space-y-20">
+      {/* ---------------- Book Card ---------------- */}
       <Card className="bg-gray-900 border-gray-800 rounded-2xl shadow-2xl p-6 md:p-10">
         <CardContent className="flex flex-col md:flex-row gap-10">
-          {/* Book Cover */}
           <div className="relative w-full md:w-1/3 h-72 md:h-96 rounded-xl overflow-hidden shadow-lg">
             <Image
               src={book.image_url || "/books_demo.png"}
@@ -54,7 +69,6 @@ export default async function BookDetailsPage({ params }: any) {
             />
           </div>
 
-          {/* Content */}
           <div className="flex-1 text-gray-200">
             <h1 className="text-4xl font-bold mb-3">{book.title}</h1>
 
@@ -63,9 +77,9 @@ export default async function BookDetailsPage({ params }: any) {
               <Badge variant="outline">{book.genre}</Badge>
               <Badge
                 variant="outline"
-                className={`${
+                className={
                   book.availableCopies ? "text-green-400" : "text-red-400"
-                }`}
+                }
               >
                 Copies: {book.availableCopies}
               </Badge>
@@ -96,8 +110,9 @@ export default async function BookDetailsPage({ params }: any) {
         </CardContent>
       </Card>
 
+      {/* ---------------- Suggested Books ---------------- */}
       {suggested.length > 0 && (
-        <div className="container mx-auto mt-20">
+        <section>
           <h2 className="text-2xl font-semibold text-gray-200 mb-6">
             Suggested for you
           </h2>
@@ -125,8 +140,11 @@ export default async function BookDetailsPage({ params }: any) {
               </Link>
             ))}
           </div>
-        </div>
+        </section>
       )}
+
+      {/* ---------------- Review Section ---------------- */}
+      <ReviewSection bookId={id} />
     </div>
   );
 }
