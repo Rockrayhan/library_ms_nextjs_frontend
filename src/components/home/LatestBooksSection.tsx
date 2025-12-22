@@ -4,7 +4,7 @@ import { BookCard } from '../books/BookCard';
 
 const LatestBooksSection = async () => {
     const books = await fetchAllBooks();
-    console.log(books);
+    // console.log(books);
     
     return (
             
