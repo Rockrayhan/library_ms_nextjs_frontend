@@ -21,7 +21,7 @@ const ManageCouponPage = () => {
   const fetchCoupons = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("/coupon"); // make sure your backend has GET /coupons
+      const res = await axios.get("/coupon"); 
       setCoupons(res.data.data || []);
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Failed to fetch coupons");

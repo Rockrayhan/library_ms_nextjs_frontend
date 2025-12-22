@@ -9,10 +9,10 @@ import { Button } from "../ui/button";
 export default function Topbar({ user }: any) {
   const router = useRouter();
 
-  const handleLogout = async () => {
-    await logoutUser();
-    router.push("/");
-  };
+  // const handleLogout = async () => {
+  //   await logoutUser();
+  //   router.push("/");
+  // };
 
   return (
     <div className="w-full bg-gray-800 border-b border-gray-700 p-4 flex justify-between items-center">
@@ -29,7 +29,7 @@ export default function Topbar({ user }: any) {
           </Button>
         </Link>
 
-        {user && (
+        {/* {user && (
           <Button
             onClick={handleLogout}
             variant="destructive"
@@ -37,7 +37,7 @@ export default function Topbar({ user }: any) {
           >
             Dashboard Logout
           </Button>
-        )}
+        )} */}
       </div>
     </div>
   );
