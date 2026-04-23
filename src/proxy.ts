@@ -6,14 +6,10 @@ const USER_DASHBOARD = "/dashboard/user";
 const ADMIN_DASHBOARD = "/dashboard/admin";
 
 export const config = {
-  matcher: [
-    "/dashboard/:path*",
-    "/login",
-    "/register",
-  ],
+  matcher: ["/dashboard/:path*", "/login", "/register"],
 };
 
-export default async function proxy(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const accessToken = request.cookies.get("accessToken")?.value;
 
@@ -29,11 +25,19 @@ export default async function proxy(request: NextRequest) {
 
   if (accessToken) {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/me`, {
-        headers: {
-          Cookie: request.cookies.toString(), // FIXED
-        },
-      });
+      // Call Next.js API route instead of external backend
+      const res = await fetch(
+        new URL("/api/user/me", request.url).toString(),
+        {
+          headers: {
+            Cookie: request.cookies.toString(),
+          },
+        }
+      );
+
+      if (!res.ok) {
+        return NextResponse.redirect(new URL("/login", request.url));
+      }
 
       const json = await res.json();
 
@@ -52,7 +56,7 @@ export default async function proxy(request: NextRequest) {
         return NextResponse.redirect(new URL(ADMIN_DASHBOARD, request.url));
       }
     } catch (err) {
-      console.log("AUTH ERROR IN PROXY:", err);
+      console.error("AUTH ERROR IN MIDDLEWARE:", err);
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }

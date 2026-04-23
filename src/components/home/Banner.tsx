@@ -1,4 +1,5 @@
 import Image from "next/image";
+import BannerItem from "./BannerItem";
 
 const Banner = () => {
   return (
@@ -38,7 +39,7 @@ const Banner = () => {
         </div>
 
         {/* Banner Image */}
-        <div className="relative mt-10 w-full h-64  md:h-[400px]">
+        {/* <div className="relative mt-10 w-full h-64  md:h-[400px]">
           <Image
             src="/library-banner.jpg"
             alt="Library Banner"
@@ -47,7 +48,8 @@ const Banner = () => {
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
           />
-        </div>
+        </div> */}
+        <BannerItem/>
       </div>
     </section>
   );

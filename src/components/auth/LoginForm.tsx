@@ -3,15 +3,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import axios from "@/lib/axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
-import Cookies from "js-cookie";
 
 export default function LoginForm() {
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,31 +19,23 @@ export default function LoginForm() {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "/auth/login",
-        { email, password },
-        { withCredentials: true }
-      );
-
-      const FaccessToken = res?.data?.data?.accessToken;
-      const FefreshToken = res?.data?.data?.refreshToken;
-
-      Cookies.set("accessToken", FaccessToken, {
-        expires: 1,
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
 
-      Cookies.set("refreshToken", FefreshToken, {
-        expires: 7,
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
-      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed");
+      }
 
       toast.success("Login successful");
       router.push("/dashboard/user");
+      router.refresh(); // Refresh to trigger middleware
     } catch (error: any) {
-      toast.error(error?.response?.data?.message || "Login failed");
+      toast.error(error.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -80,7 +69,7 @@ export default function LoginForm() {
       </Button>
 
       {/* DEMO LOGIN BUTTONS */}
-      <div className="flex md:flex-row  flex-col gap-3 pt-2">
+      <div className="flex md:flex-row flex-col gap-3 pt-2">
         <Button
           type="button"
           variant="outline"
